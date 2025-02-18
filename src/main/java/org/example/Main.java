@@ -9,6 +9,8 @@ public class Main {
         System.out.println("Hola mundo");
         System.out.println("Nuevo commit");
         System.out.println("Nuevo commit");
-
+        for (int i = 0; i < 10; i++) {
+            System.out.println("i = " + i);
+        }
     }
 }
