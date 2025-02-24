@@ -15,9 +15,10 @@ public class Main {
         int conQuinientos = 0;
         int totalMonedas = 0;
         int totalDinero = 0;
-
         int numero;
+
         do {
+
             System.out.print("1. Agregar Monedas \n");
             System.out.print("2. Contar monedas \n");
             System.out.print("3. Contar total de dinero ahorrado\n");
@@ -52,16 +53,26 @@ public class Main {
                             break;
                     }
                 }
+                break;
+
                 case 2: {
                     System.out.println("El total de monedas es: ");
                     totalMonedas = conVeinte + concicuenta + conCien + conDoscientos + conQuinientos;
                     System.out.println(totalMonedas);
+                    System.out.println("Monedas de 20: "+conVeinte);
+                    System.out.println("Monedas de 50: "+concicuenta);
+                    System.out.println("Monedas de 100: "+conCien);
+                    System.out.println("Monedas de 200: "+conDoscientos);
+                    System.out.println("Monedas de 500: "+conQuinientos);
                 }
+                break;
+
                 case 3: {
                     System.out.println("el total del dinero ahorrado es");
                     totalDinero = (conVeinte * 20) + (concicuenta * 50) + (conCien * 100) + (conDoscientos * 200) + (conQuinientos * 500);
                     System.out.println(totalDinero);
                 }
+                break;
                 case 4: {
                     System.out.println("Rompiendo Dinero");
                     conVeinte = 0;
