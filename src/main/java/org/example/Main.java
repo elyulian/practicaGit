@@ -26,7 +26,7 @@ public class Main {
             System.out.print("Ingresa una opcion: ");
             numero = scanner.nextInt();
             switch (numero) {
-                case 1: {
+                case 1 -> {
                     System.out.println("Ingresa la denomicacion de la modena");
                     System.out.println("1. 20");
                     System.out.println("2. 50");
@@ -36,44 +36,44 @@ public class Main {
                     int opcion = scanner.nextInt();
 
                     switch (opcion) {
-                        case 1:
+                        case 1 -> {
                             conVeinte++;
-                            break;
-                        case 2:
+                        }
+                        case 2 -> {
                             concicuenta++;
-                            break;
-                        case 3:
-                            conCien++;
-                            break;
-                        case 4:
+                        }
+                        case 3->{
+                            conCien++;}
+
+                        case 4-> {
                             conDoscientos++;
-                            break;
-                        case 5:
+                        }
+                        case 5 -> {
                             conQuinientos++;
-                            break;
+                        }
                     }
                 }
-                break;
 
-                case 2: {
+
+                case 2 -> {
                     System.out.println("El total de monedas es: ");
                     totalMonedas = conVeinte + concicuenta + conCien + conDoscientos + conQuinientos;
                     System.out.println(totalMonedas);
-                    System.out.println("Monedas de 20: "+conVeinte);
-                    System.out.println("Monedas de 50: "+concicuenta);
-                    System.out.println("Monedas de 100: "+conCien);
-                    System.out.println("Monedas de 200: "+conDoscientos);
-                    System.out.println("Monedas de 500: "+conQuinientos);
+                    System.out.println("Monedas de 20: " + conVeinte);
+                    System.out.println("Monedas de 50: " + concicuenta);
+                    System.out.println("Monedas de 100: " + conCien);
+                    System.out.println("Monedas de 200: " + conDoscientos);
+                    System.out.println("Monedas de 500: " + conQuinientos);
                 }
-                break;
 
-                case 3: {
+
+                case 3 -> {
                     System.out.println("el total del dinero ahorrado es");
                     totalDinero = (conVeinte * 20) + (concicuenta * 50) + (conCien * 100) + (conDoscientos * 200) + (conQuinientos * 500);
                     System.out.println(totalDinero);
                 }
-                break;
-                case 4: {
+
+                case 4 -> {
                     System.out.println("Rompiendo Dinero");
                     conVeinte = 0;
                     concicuenta = 0;
@@ -83,7 +83,6 @@ public class Main {
                     totalMonedas = 0;
                     totalDinero = 0;
                 }
-                break;
             }
         } while (numero >= 1 && numero <= 4);
     }
