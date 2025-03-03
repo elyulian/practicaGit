@@ -1,89 +1,93 @@
 package org.example;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-//    public static void main(String[] args) {
-//
-//        Scanner scanner = new Scanner(System.in);
-//        int conVeinte = 0;
-//        int concicuenta = 0;
-//        int conCien = 0;
-//        int conDoscientos = 0;
-//        int conQuinientos = 0;
-//        int totalMonedas = 0;
-//        int totalDinero = 0;
-//        int numero;
-//
-//        do {
-//
-//            System.out.print("1. Agregar Monedas \n");
-//            System.out.print("2. Contar monedas \n");
-//            System.out.print("3. Contar total de dinero ahorrado\n");
-//            System.out.print("4. Romper alcancias\n");
-//            System.out.print("Ingresa una opcion: ");
-//            numero = scanner.nextInt();
-//            switch (numero) {
-//                case 1 -> {
-//                    System.out.println("Ingresa la denomicacion de la modena");
-//                    System.out.println("1. 20");
-//                    System.out.println("2. 50");
-//                    System.out.println("3. 100");
-//                    System.out.println("4. 200");
-//                    System.out.println("5. 500");
-//                    int opcion = scanner.nextInt();
-//
-//                    switch (opcion) {
-//                        case 1 -> {
-//                            conVeinte++;
-//                        }
-//                        case 2 -> {
-//                            concicuenta++;
-//                        }
-//                        case 3->{
-//                            conCien++;}
-//
-//                        case 4-> {
-//                            conDoscientos++;
-//                        }
-//                        case 5 -> {
-//                            conQuinientos++;
-//                        }
-//                    }
-//                }
-//
-//
-//                case 2 -> {
-//                    System.out.println("El total de monedas es: ");
-//                    totalMonedas = conVeinte + concicuenta + conCien + conDoscientos + conQuinientos;
-//                    System.out.println(totalMonedas);
-//                    System.out.println("Monedas de 20: " + conVeinte);
-//                    System.out.println("Monedas de 50: " + concicuenta);
-//                    System.out.println("Monedas de 100: " + conCien);
-//                    System.out.println("Monedas de 200: " + conDoscientos);
-//                    System.out.println("Monedas de 500: " + conQuinientos);
-//                }
-//
-//
-//                case 3 -> {
-//                    System.out.println("el total del dinero ahorrado es");
-//                    totalDinero = (conVeinte * 20) + (concicuenta * 50) + (conCien * 100) + (conDoscientos * 200) + (conQuinientos * 500);
-//                    System.out.println(totalDinero);
-//                }
-//
-//                case 4 -> {
-//                    System.out.println("Rompiendo Dinero");
-//                    conVeinte = 0;
-//                    concicuenta = 0;
-//                    conCien = 0;
-//                    conDoscientos = 0;
-//                    conQuinientos = 0;
-//                    totalMonedas = 0;
-//                    totalDinero = 0;
-//                }
-//            }
-//        } while (numero >= 1 && numero <= 4);
-//    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Cuenta cuenta1 = new Cuenta(0,"Julian","123456");
+        Cuenta cuenta2 = new Cuenta(500000,"Andres","654321");
+        Cuenta cuenta3 = new Cuenta(700000,"Alexander","987654");
+        Cuenta cuenta4 = new Cuenta();
+        cuenta4.setNumeroCuenta("45678");
+        cuenta4.setSaldo(45000);
+        cuenta4.setTitular("David");
+
+        List<Cuenta> listaCuenta = new ArrayList<>();
+        listaCuenta.add(cuenta1);
+        listaCuenta.add(cuenta2);
+        listaCuenta.add(cuenta3);
+        listaCuenta.add(cuenta4);
+
+        int opcion = 0;
+        do {
+            System.out.println("----------Banca MIA----------");
+            System.out.println("1. Mostrar información");
+            System.out.println("2. Consignar");
+            System.out.println("3. Retirar");
+            System.out.println("4. Salir");
+            System.out.println("Digite una opción: ");
+            opcion = scanner.nextInt();
+
+            switch (opcion){
+                case 1->{
+                   for(Cuenta miLista: listaCuenta){
+                       System.out.println(miLista);
+                   }
+                }
+                case 2 ->{
+                    System.out.println("Ingrese el numero de cuenta: ");
+                    String numeroCuenta = scanner.next();
+                    for (int i=0; i<listaCuenta.size(); i++){
+                        if(listaCuenta.get(i).getNumeroCuenta().equals(numeroCuenta)){
+                            System.out.println("Ingrese el valor a consignar");
+                            double valor = scanner.nextDouble();
+                            while (valor <=0){
+                                System.out.println("El valor de no puede ser negativo o 0");
+                                System.out.println("Ingrese el valor a consignar");
+                                 valor = scanner.nextDouble();
+                            }
+                            listaCuenta.get(i).consignar(valor);
+                            System.out.println("Consignación Exitosa");
+                            break;
+                        }else {
+                            System.out.println("El numero de cuenta no existe");
+                        }
+                    }
+                }
+                case 3->{
+                    System.out.println("Ingrese el numero de cuenta: ");
+                    String numeroCuenta = scanner.next();
+                    for (int i=0; i<listaCuenta.size(); i++){
+                        while(listaCuenta.get(i).getNumeroCuenta() != numeroCuenta) {
+                            if (listaCuenta.get(i).getNumeroCuenta().equals(numeroCuenta)) {
+                                System.out.println("Ingrese el valor a Retirar");
+                                double valor = scanner.nextDouble();
+                                while (valor > listaCuenta.get(i).getSaldo()) {
+                                    System.out.println("Fondos Insuficientes su saldo es:" + listaCuenta.get(i).getSaldo());
+                                    System.out.println("Ingrese el valor a retirar");
+                                    valor = scanner.nextDouble();
+                                }
+                                listaCuenta.get(i).retirar(valor);
+                                System.out.println("Retiro Exitoso");
+                                break;
+                            } else {
+                                System.out.println("El numero de cuenta no existe");
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }while (opcion != 4);
+
+
+
+    }
 }
